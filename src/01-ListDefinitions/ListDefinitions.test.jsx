@@ -135,7 +135,7 @@ describe("ListDefinitions", () => {
     expect(screen.getByText("-")).toBeInTheDocument();
   });
 
-  it("renders multiple", () => {
+  it("renders multiple sub lists", () => {
     render(
       <ListDefinitions
         list={[
@@ -161,5 +161,26 @@ describe("ListDefinitions", () => {
     expect(screen.getByText("Itau")).toBeInTheDocument();
     expect(screen.getByText("Salary")).toBeInTheDocument();
     expect(screen.getByText("R$ 2.340")).toBeInTheDocument();
+  });
+
+  it("renders empty fields", () => {
+    render(
+      <ListDefinitions
+        list={[
+          {
+            title: "Job Info",
+            value: [
+              { title: "Company", value: "Coca-Cola" },
+              {
+                title: "Payment Info",
+                value: "",
+              },
+            ],
+          },
+        ]}
+      />
+    );
+
+    expect(screen.getByText("Empty fields")).toBeInTheDocument();
   });
 });
